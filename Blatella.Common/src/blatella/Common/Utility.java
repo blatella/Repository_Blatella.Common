@@ -1,7 +1,7 @@
 package blatella.Common;
 
 import org.w3c.dom.*;
-
+import java.math.*;
 
 public class Utility 
 {
@@ -74,4 +74,85 @@ public class Utility
 		}
 		return _answer;
     }
+
+	
+	public static boolean LessThan(BigDecimal value1,int value2)
+	{
+		return LessThan(value1,new BigDecimal(value2));
+	}
+	public static boolean LessThan(int value1,BigDecimal value2)
+	{
+		return LessThan(new BigDecimal(value1),value2);
+	}
+	public static boolean LessThan(BigDecimal value1,BigDecimal value2)
+	{
+		if (value1 == null)
+            throw new IllegalArgumentException("value1");
+		else
+			if (value2 == null)
+	            throw new IllegalArgumentException("value2");
+			else
+				return value1.compareTo(value2)==-1;
+	}
+	public static boolean GreaterThan(BigDecimal value1,int value2)
+	{
+		return GreaterThan(value1,new BigDecimal(value2));
+	}
+	public static boolean GreaterThan(int value1,BigDecimal value2)
+	{
+		return GreaterThan(new BigDecimal(value1),value2);
+	}
+	public static boolean GreaterThan(BigDecimal value1,BigDecimal value2)
+	{
+		if (value1 == null)
+            throw new IllegalArgumentException("value1");
+		else
+			if (value2 == null)
+	            throw new IllegalArgumentException("value2");
+			else
+				return value1.compareTo(value2)==1;
+	}
+	public static boolean EqualThan(BigDecimal value1,int value2)
+	{
+		return EqualThan(value1,new BigDecimal(value2));
+	}
+	public static boolean EqualThan(int value1,BigDecimal value2)
+	{
+		return EqualThan(new BigDecimal(value1),value2);
+	}
+	public static boolean EqualThan(BigDecimal value1,BigDecimal value2)
+	{
+		if (value1 == null)
+            throw new IllegalArgumentException("value1");
+		else
+			if (value2 == null)
+	            throw new IllegalArgumentException("value2");
+			else
+				return value1.compareTo(value2)==0;
+	}
+	public static boolean LessThanOrEqual(BigDecimal value1,int value2)
+	{
+		return LessThanOrEqual(value1,new BigDecimal(value2));
+	}
+	public static boolean LessThanOrEqual(int value1,BigDecimal value2)
+	{
+		return LessThanOrEqual(new BigDecimal(value1),value2);
+	}
+	public static boolean LessThanOrEqual(BigDecimal value1,BigDecimal value2)
+	{
+		return 	LessThan( value1, value2)||EqualThan(value1,value2);
+	}
+	public static boolean GreaterThanOrEqual(BigDecimal value1,int value2)
+	{
+		return GreaterThanOrEqual(value1,new BigDecimal(value2));
+	}
+	public static boolean GreaterThanOrEqual(int value1,BigDecimal value2)
+	{
+		return GreaterThanOrEqual(new BigDecimal(value1),value2);
+	}
+	public static boolean GreaterThanOrEqual(BigDecimal value1,BigDecimal value2)
+	{
+		return 	GreaterThan( value1, value2)||EqualThan(value1,value2);
+	}
+	
 }

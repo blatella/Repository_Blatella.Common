@@ -8,7 +8,7 @@ public class Test_001
 	{
 		Return<Object>_respuesta=new Return<Object>();
 		
-		_respuesta=TestTuplas();
+		_respuesta=TestDiccionario();
 		
 		if(_respuesta.isTheresError())
 			System.out.println(_respuesta.getError().toString());
@@ -44,6 +44,25 @@ public class Test_001
 	        */
 			
 			WritableTuple_2<String,Integer>_tupla2=new WritableTuple_2<String,Integer>("prueba 1",4);
+		}
+		catch(Exception _ex)
+		{
+			_respuesta.setTheresError(true);
+			_respuesta.setError(Utility.GetError(_ex));
+		}
+		return _respuesta;
+	}
+	
+	private static Return<Object> TestDiccionario()
+	{
+		Return<Object>_respuesta=new Return<Object>();
+		try
+		{
+			HashMap<String,Integer>_test1=new HashMap<String,Integer>();
+			_test1.put("abc", 1);
+			_test1.put("cba", 2);
+			_test1.put("abcd", 3);
+			_test1.put("abcdr", 4);
 		}
 		catch(Exception _ex)
 		{

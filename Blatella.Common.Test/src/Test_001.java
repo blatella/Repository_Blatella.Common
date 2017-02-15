@@ -8,7 +8,8 @@ public class Test_001
 	{
 		Return<Object>_respuesta=new Return<Object>();
 		
-		_respuesta=TestDiccionario();
+		//_respuesta=TestDiccionario();
+		_respuesta=TestTuplas();
 		
 		if(_respuesta.isTheresError())
 			System.out.println(_respuesta.getError().toString());
@@ -43,7 +44,13 @@ public class Test_001
 	        System.out.println("deserializamos");
 	        */
 			
-			WritableTuple_2<String,Integer>_tupla2=new WritableTuple_2<String,Integer>("prueba 1",4);
+			//WritableTuple_2<String,Integer>_tupla2=new WritableTuple_2<String,Integer>("prueba 1",4);
+			
+			WritableTuple_13<String,String,String,String,String,String,String,String,String,String,String,String,String>_tupla
+				=new WritableTuple_13<String,String,String,String,String,String,String,String,String,String,String,String,String>
+						("01","02","03","04","05","06","07","08","09","10","11","12","13");
+			String _prueba = _tupla.toString();
+			String aa=_prueba;
 		}
 		catch(Exception _ex)
 		{

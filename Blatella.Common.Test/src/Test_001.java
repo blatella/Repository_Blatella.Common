@@ -9,7 +9,8 @@ public class Test_001
 		Return<Object>_respuesta=new Return<Object>();
 		
 		//_respuesta=TestDiccionario();
-		_respuesta=TestTuplas();
+		//_respuesta=TestTuplas();
+		_respuesta=TestJoin();
 		
 		if(_respuesta.isTheresError())
 			System.out.println(_respuesta.getError().toString());
@@ -78,5 +79,26 @@ public class Test_001
 		}
 		return _respuesta;
 	}
+	
+	private static Return<Object> TestJoin()
+	{
+		Return<Object>_respuesta=new Return<Object>();
+		try
+		{
+			//List<String>_list=Arrays.asList("aaaaa","bbbbb","ccccc");
+			//List<String>_list=Arrays.asList("aaaaa","bbbbb");
+			//List<String>_list=Arrays.asList("aaaaa");
+			List<String>_list=new ArrayList<String>();
+			String _join=Utility.Join(_list,".");
+			System.out.println(_join);
+		}
+		catch(Exception _ex)
+		{
+			_respuesta.setTheresError(true);
+			_respuesta.setError(Utility.GetError(_ex));
+		}
+		return _respuesta;
+	}
+	
 	
 }

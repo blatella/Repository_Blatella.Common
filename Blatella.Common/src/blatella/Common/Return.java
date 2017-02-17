@@ -38,6 +38,11 @@ public class Return<T>
     {
         InitializeValues();
     }
+	public Return(T data)
+    {
+        this();
+        setData(data);
+    }
 	//--------------------------------------------------------------------------------------------------------
 	private void InitializeValues()
     {

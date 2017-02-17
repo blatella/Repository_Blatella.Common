@@ -2,6 +2,7 @@ package blatella.Common;
 
 import org.w3c.dom.*;
 import java.math.*;
+import java.util.*;
 
 public class Utility 
 {
@@ -42,6 +43,21 @@ public class Utility
 	    }
 	    return _respuesta;
 	}
+	
+	public static String Join(Collection<String> s, String delimiter) 
+	{
+	     StringBuilder builder = new StringBuilder();
+	     Iterator<String> iter = s.iterator();
+	     while (iter.hasNext())
+	     {
+	         builder.append(iter.next());
+	         if (!iter.hasNext()) {
+	           break;                  
+	         }
+	         builder.append(delimiter);
+	     }
+	     return builder.toString();
+	 }
 	
 	public static boolean TryParseInt(String value) 
 	{  

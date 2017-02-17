@@ -44,17 +44,18 @@ public class Utility
 	    return _respuesta;
 	}
 	
-	public static String Join(Collection<String> s, String delimiter) 
+	public static String Join(String separator,Collection<String> value) 
 	{
 	     StringBuilder builder = new StringBuilder();
-	     Iterator<String> iter = s.iterator();
+	     Iterator<String> iter = value.iterator();
 	     while (iter.hasNext())
 	     {
 	         builder.append(iter.next());
-	         if (!iter.hasNext()) {
+	         
+	         if (!iter.hasNext())
 	           break;                  
-	         }
-	         builder.append(delimiter);
+	         
+	         builder.append(separator);
 	     }
 	     return builder.toString();
 	 }

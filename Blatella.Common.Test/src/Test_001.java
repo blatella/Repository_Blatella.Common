@@ -1,6 +1,15 @@
 import java.util.*;
 import java.io.*;
+import java.util.stream.*;
 import blatella.Common.*;
+import javax.xml.*;
+import javax.xml.namespace.*;
+import javax.xml.parsers.*;
+import javax.xml.xpath.*;
+
+import org.w3c.dom.*;
+import org.xml.sax.*;
+import org.w3c.dom.xpath.*;
 
 public class Test_001 
 {
@@ -10,7 +19,8 @@ public class Test_001
 		
 		//_respuesta=TestDiccionario();
 		//_respuesta=TestTuplas();
-		_respuesta=TestJoin();
+		//_respuesta=TestJoin();
+		_respuesta= TestLINQ();
 		
 		if(_respuesta.isTheresError())
 			System.out.println(_respuesta.getError().toString());
@@ -89,7 +99,7 @@ public class Test_001
 			//List<String>_list=Arrays.asList("aaaaa","bbbbb");
 			//List<String>_list=Arrays.asList("aaaaa");
 			List<String>_list=new ArrayList<String>();
-			String _join=Utility.Join(_list,".");
+			String _join=Utility.Join(".",_list);
 			System.out.println(_join);
 		}
 		catch(Exception _ex)
@@ -100,5 +110,91 @@ public class Test_001
 		return _respuesta;
 	}
 	
+	private static Return<Object> TestLINQ()
+	{
+		Return<Object>_respuesta=new Return<Object>();
+		try
+		{
+			List<Animal> _animals=new ArrayList<Animal>();
+			_animals.add(new  Animal("leon"));
+			_animals.add(new  Animal("oveja"));
+			_animals.add(new  Animal("lobo"));
+			_animals.add(new  Animal("lobo"));
+			_animals.add(new  Animal("lobo"));
+			
+			/*
+			List<Animal> _animalsFiltrados = _animals.stream().filter(s->s.getName()=="lobo").collect(Collectors.toList());
+			for (int i = 0; i < _animalsFiltrados.size(); i++) 
+	        {
+	            Animal animal = _animalsFiltrados.get(i);
+	            System.out.println("nombre animal[" + i + "]=" + animal.getName());
+	        }
+			*/
+			
+			/*List<String> _animalsMayusculas = _animals.stream().map(s->s.getName().toUpperCase()).collect(Collectors.toList());
+			for (String _entity:_animalsMayusculas)
+			    System.out.println(_entity);
+			*/
+			/*
+			List<String> _animalsMinusculasyMayusculas = _animals.stream()
+														.map(s->Arrays.asList(s.getName().toLowerCase(),s.getName().toUpperCase()))
+														.flatMap(l -> l.stream())
+														.collect(Collectors.toList());
+			for (String _entity:_animalsMinusculasyMayusculas)
+			    System.out.println(_entity);
+			*/
+			
+			/*
+			for (int i = 0; i < _animalsMayusculas.size(); i++)
+			{
+	            String _string = _animalsMayusculas.get(i);
+	            System.out.println("nombre animal[" + i + "]=" + _string);
+			}
+			*/
+			
+			
+			
+			/*
+			Optional<Animal>_primerAnimal=_animals.stream().findFirst();
+			if(_primerAnimal.isPresent())
+				System.out.println("primer animal: " + _primerAnimal.get().getName());
+			*/
+			
+			/*
+			if (_animals.stream().anyMatch(s->s.getName()=="lobo"))
+				System.out.println("hay lobos");
+			*/
+		}
+		catch(Exception _ex)
+		{
+			_respuesta.setTheresError(true);
+			_respuesta.setError(Utility.GetError(_ex));
+		}
+		
+		return _respuesta;
+	}
 	
+}
+
+
+class Animal
+{
+	protected String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Animal()
+	{
+		this.setName(Utility.EMPTY_STRING);
+	}
+	
+	public Animal(String nameParametro)
+	{
+		this();
+		this.setName(nameParametro);
+	}
 }

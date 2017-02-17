@@ -3,6 +3,7 @@ package blatella.Common;
 import org.w3c.dom.*;
 import java.math.*;
 import java.util.*;
+import java.util.stream.*;
 
 public class Utility 
 {
@@ -58,6 +59,20 @@ public class Utility
 	         builder.append(separator);
 	     }
 	     return builder.toString();
+	 }
+	
+	public static List<String> Split(String value,String regex) 
+	{
+	     return Split(value,regex,true);
+	}
+	
+	public static List<String> Split(String value,String regex,boolean removeEmptyEntries) 
+	{
+		List<String>_answer=Arrays.asList(value.split(regex));
+		if(removeEmptyEntries)
+			_answer=_answer.stream().filter(s->!IsNullOrEmpty(s)).collect(Collectors.toList());
+	     
+	     return _answer;
 	 }
 	
 	public static boolean TryParseInt(String value) 

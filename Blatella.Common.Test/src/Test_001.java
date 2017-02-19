@@ -7,23 +7,23 @@ public class Test_001
 {
 	public static void main(String[] args) 
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		
-		//_respuesta=TestDiccionario();
-		//_respuesta=TestTuplas();
-		//_respuesta=TestJoin();
-		//_respuesta= TestLINQ();
-		_respuesta= TestSplit();
+		//_answer=TestDiccionario();
+		//_answer=TestTuplas();
+		//_answer=TestJoin();
+		//_answer= TestLINQ();
+		_answer= TestSplit();
 		
-		if(_respuesta.isTheresError())
-			System.out.println(_respuesta.getError().toString());
+		if(_answer.isTheresError())
+			System.out.println(_answer.getError().toString());
 		else
 			System.out.println("prueba finalizada");
 	}
 	
 	private static Return<Object> TestTuplas()
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		try
 		{
 			//WritableTuple_2<String,String>_tupla1=new WritableTuple_2<String,String>("prueba 1","prueba 2");
@@ -58,15 +58,15 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_respuesta.setTheresError(true);
-			_respuesta.setError(Utility.GetError(_ex));
+			_answer.setTheresError(true);
+			_answer.setError(Utility.GetError(_ex));
 		}
-		return _respuesta;
+		return _answer;
 	}
 	
 	private static Return<Object> TestDiccionario()
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		try
 		{
 			HashMap<String,Integer>_test1=new HashMap<String,Integer>();
@@ -77,15 +77,15 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_respuesta.setTheresError(true);
-			_respuesta.setError(Utility.GetError(_ex));
+			_answer.setTheresError(true);
+			_answer.setError(Utility.GetError(_ex));
 		}
-		return _respuesta;
+		return _answer;
 	}
 	
 	private static Return<Object> TestJoin()
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		try
 		{
 			//List<String>_list=Arrays.asList("aaaaa","bbbbb","ccccc");
@@ -97,15 +97,15 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_respuesta.setTheresError(true);
-			_respuesta.setError(Utility.GetError(_ex));
+			_answer.setTheresError(true);
+			_answer.setError(Utility.GetError(_ex));
 		}
-		return _respuesta;
+		return _answer;
 	}
 	
 	private static Return<Object> TestSplit()
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		try
 		{
 			String _word = "aaa.bbb..cc";
@@ -128,15 +128,15 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_respuesta.setTheresError(true);
-			_respuesta.setError(Utility.GetError(_ex));
+			_answer.setTheresError(true);
+			_answer.setError(Utility.GetError(_ex));
 		}
-		return _respuesta;
+		return _answer;
 	}
 	
 	private static Return<Object> TestLINQ()
 	{
-		Return<Object>_respuesta=new Return<Object>();
+		Return<Object>_answer=new Return<Object>();
 		try
 		{
 			List<Animal> _animals=new ArrayList<Animal>();
@@ -180,11 +180,11 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_respuesta.setTheresError(true);
-			_respuesta.setError(Utility.GetError(_ex));
+			_answer.setTheresError(true);
+			_answer.setError(Utility.GetError(_ex));
 		}
 		
-		return _respuesta;
+		return _answer;
 	}
 	
 }

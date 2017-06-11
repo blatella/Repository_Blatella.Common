@@ -108,6 +108,8 @@ public class Test_001
 		Return<Object>_answer=new Return<Object>();
 		try
 		{
+			//comment 20170611
+			
 			String _word = "aaa.bbb..cc";
 			
 			List<String>_list=Arrays.asList(_word.split("[.]"));

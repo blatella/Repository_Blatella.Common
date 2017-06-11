@@ -108,7 +108,7 @@ public class Test_001
 		Return<Object>_answer=new Return<Object>();
 		try
 		{
-			//comment 20170611
+			//comment 20170611_002
 			
 			String _word = "aaa.bbb..cc";
 			

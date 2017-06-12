@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.util.stream.*;
 import blatella.Common.*;
+import blatella.Common.Error;
 
 public class Test_001 
 {
@@ -9,16 +10,36 @@ public class Test_001
 	{
 		Return<Object>_answer=new Return<Object>();
 		
-		//_answer=TestDictionary();
-		//_answer=TestTuples();
-		//_answer=TestJoin();
-		//_answer= TestLINQ();
-		_answer= TestSplit();
+		if(!_answer.theresError )
+			_answer=TestTuples();
 		
-		if(_answer.isTheresError())
-			System.out.println(_answer.getError().toString());
+		if(!_answer.theresError )
+			_answer=TestDictionary();
+		
+		if(!_answer.theresError )
+			_answer=TestJoin();
+		
+		if(!_answer.theresError )
+			_answer=TestSplit();
+		
+		if(!_answer.theresError )
+			_answer=TestLINQ();
+		
+		if(_answer.theresError)
+			ManageError(_answer.error);
 		else
 			System.out.println("finished test");
+	}
+	
+	private static void ManageError(Error error)
+	{
+		ShowMessage(error.toString());
+	}
+	
+	private static void ShowMessage(String message)
+	{
+		if(!Utility.IsNullOrWhiteSpace(message))
+			System.out.println(message);
 	}
 	
 	private static Return<Object> TestTuples()
@@ -58,8 +79,8 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_answer.setTheresError(true);
-			_answer.setError(Utility.GetError(_ex));
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
 		}
 		return _answer;
 	}
@@ -77,8 +98,8 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_answer.setTheresError(true);
-			_answer.setError(Utility.GetError(_ex));
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
 		}
 		return _answer;
 	}
@@ -97,8 +118,8 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_answer.setTheresError(true);
-			_answer.setError(Utility.GetError(_ex));
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
 		}
 		return _answer;
 	}
@@ -130,8 +151,8 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_answer.setTheresError(true);
-			_answer.setError(Utility.GetError(_ex));
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
 		}
 		return _answer;
 	}
@@ -182,8 +203,8 @@ public class Test_001
 		}
 		catch(Exception _ex)
 		{
-			_answer.setTheresError(true);
-			_answer.setError(Utility.GetError(_ex));
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
 		}
 		
 		return _answer;

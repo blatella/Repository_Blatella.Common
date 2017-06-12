@@ -2,7 +2,9 @@ package blatella.Common;
 
 public class IllegalNullArgumentException extends IllegalArgumentException 
 {
-	 public IllegalNullArgumentException()
+	private static final long serialVersionUID = -3458516204096575719L;
+
+	public IllegalNullArgumentException()
 	 {
 		 super();
 	 }

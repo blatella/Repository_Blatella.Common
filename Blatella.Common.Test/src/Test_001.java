@@ -9,8 +9,8 @@ public class Test_001
 	{
 		Return<Object>_answer=new Return<Object>();
 		
-		//_answer=TestDiccionario();
-		//_answer=TestTuplas();
+		//_answer=TestDictionary();
+		//_answer=TestTuples();
 		//_answer=TestJoin();
 		//_answer= TestLINQ();
 		_answer= TestSplit();
@@ -18,43 +18,43 @@ public class Test_001
 		if(_answer.isTheresError())
 			System.out.println(_answer.getError().toString());
 		else
-			System.out.println("prueba finalizada");
+			System.out.println("finished test");
 	}
 	
-	private static Return<Object> TestTuplas()
+	private static Return<Object> TestTuples()
 	{
 		Return<Object>_answer=new Return<Object>();
 		try
 		{
-			//WritableTuple_2<String,String>_tupla1=new WritableTuple_2<String,String>("prueba 1","prueba 2");
-			//System.out.println(_tupla1.toString());
+			//WritableTuple_2<String,String>_tuple1=new WritableTuple_2<String,String>("prueba 1","prueba 2");
+			//System.out.println(_tuple1.toString());
 			
 		/*
 			String _filePath="D:\\DESCARGA\\prueba.ser";
 			FileOutputStream _fileOutputStream = new FileOutputStream(_filePath);
 			ObjectOutputStream _objectOutputStream = new ObjectOutputStream(_fileOutputStream);
-			_objectOutputStream.writeObject(_tupla1);
+			_objectOutputStream.writeObject(_tuple1);
 			_objectOutputStream.close();
 			_fileOutputStream.close();
-			System.out.println("serializamos");
+			System.out.println("serializing");
 			
 			FileInputStream _fileInputStream = new FileInputStream(_filePath);
 			ObjectInputStream _objectInputStream = new ObjectInputStream(_fileInputStream);
 	        @SuppressWarnings({ "unchecked", "unused" })
-	        WritableTuple_2<String,String>_tupla2= (WritableTuple_2<String,String>) _objectInputStream.readObject();
+	        WritableTuple_2<String,String>_tuple2= (WritableTuple_2<String,String>) _objectInputStream.readObject();
 	        _objectInputStream.close();
 	        _fileInputStream.close();
-	        System.out.println(_tupla1.toString());
-	        System.out.println("deserializamos");
+	        System.out.println(_tuple1.toString());
+	        System.out.println("deserializing");
 	        */
 			
-			//WritableTuple_2<String,Integer>_tupla2=new WritableTuple_2<String,Integer>("prueba 1",4);
+			//WritableTuple_2<String,Integer>_tuple2=new WritableTuple_2<String,Integer>("prueba 1",4);
 			
-			WritableTuple_13<String,String,String,String,String,String,String,String,String,String,String,String,String>_tupla
+			WritableTuple_13<String,String,String,String,String,String,String,String,String,String,String,String,String>_tuple
 				=new WritableTuple_13<String,String,String,String,String,String,String,String,String,String,String,String,String>
 						("01","02","03","04","05","06","07","08","09","10","11","12","13");
-			String _prueba = _tupla.toString();
-			String aa=_prueba;
+			String _test = _tuple.toString();
+			String aa=_test;
 		}
 		catch(Exception _ex)
 		{
@@ -64,7 +64,7 @@ public class Test_001
 		return _answer;
 	}
 	
-	private static Return<Object> TestDiccionario()
+	private static Return<Object> TestDictionary()
 	{
 		Return<Object>_answer=new Return<Object>();
 		try
@@ -142,42 +142,42 @@ public class Test_001
 		try
 		{
 			List<Animal> _animals=new ArrayList<Animal>();
-			_animals.add(new  Animal("leon"));
-			_animals.add(new  Animal("oveja"));
-			_animals.add(new  Animal("lobo"));
-			_animals.add(new  Animal("lobo"));
-			_animals.add(new  Animal("lobo"));
+			_animals.add(new  Animal("lion"));
+			_animals.add(new Animal("sheep"));
+			_animals.add(new  Animal("wolf"));
+			_animals.add(new  Animal("wolf"));
+			_animals.add(new  Animal("wolf"));
 			
-			List<Animal> _animalsFiltrados = _animals.stream().filter(s->s.getName()=="lobo").collect(Collectors.toList());
-			for (int i = 0; i < _animalsFiltrados.size(); i++) 
+			List<Animal> _animalsFiltered = _animals.stream().filter(s->s.getName()=="wolf").collect(Collectors.toList());
+			for (int i = 0; i < _animalsFiltered.size(); i++) 
 	        {
-	            Animal animal = _animalsFiltrados.get(i);
-	            System.out.println("nombre animal[" + i + "]=" + animal.getName());
+	            Animal animal = _animalsFiltered.get(i);
+	            System.out.println("name animal[" + i + "]=" + animal.getName());
 	        }
 			
-			List<String> _animalsMayusculas = _animals.stream().map(s->s.getName().toUpperCase()).collect(Collectors.toList());
-			for (String _entity:_animalsMayusculas)
+			List<String> _animalsUppercase = _animals.stream().map(s->s.getName().toUpperCase()).collect(Collectors.toList());
+			for (String _entity:_animalsUppercase)
 			    System.out.println(_entity);
 			
-			List<String> _animalsMinusculasyMayusculas = _animals.stream()
+			List<String> _animalsUppercaseLowercase = _animals.stream()
 														.map(s->Arrays.asList(s.getName().toLowerCase(),s.getName().toUpperCase()))
 														.flatMap(l -> l.stream())
 														.collect(Collectors.toList());
-			for (String _entity:_animalsMinusculasyMayusculas)
+			for (String _entity:_animalsUppercaseLowercase)
 			    System.out.println(_entity);
 
-			for (int i = 0; i < _animalsMayusculas.size(); i++)
+			for (int i = 0; i < _animalsUppercase.size(); i++)
 			{
-	            String _string = _animalsMayusculas.get(i);
-	            System.out.println("nombre animal[" + i + "]=" + _string);
+	            String _string = _animalsUppercase.get(i);
+	            System.out.println("name animal[" + i + "]=" + _string);
 			}
 			
-			Optional<Animal>_primerAnimal=_animals.stream().findFirst();
-			if(_primerAnimal.isPresent())
-				System.out.println("primer animal: " + _primerAnimal.get().getName());
+			Optional<Animal>_firstAnimal=_animals.stream().findFirst();
+			if(_firstAnimal.isPresent())
+				System.out.println("first animal: " + _firstAnimal.get().getName());
 			
-			if (_animals.stream().anyMatch(s->s.getName()=="lobo"))
-				System.out.println("hay lobos");
+			if (_animals.stream().anyMatch(s->s.getName()=="wolf"))
+				System.out.println("hay wolfs");
 			
 		}
 		catch(Exception _ex)
@@ -207,9 +207,9 @@ class Animal
 		this.setName(Utility.EMPTY_STRING);
 	}
 	
-	public Animal(String nameParametro)
+	public Animal(String name)
 	{
 		this();
-		this.setName(nameParametro);
+		this.setName(name);
 	}
 }

@@ -9,7 +9,7 @@ public class Test_001
 	public static void main(String[] args) 
 	{
 		Return<Object>_answer=new Return<Object>();
-		
+		/*
 		if(!_answer.theresError )
 			_answer=TestTuples();
 		
@@ -24,6 +24,10 @@ public class Test_001
 		
 		if(!_answer.theresError )
 			_answer=TestLINQ();
+		*/
+		if(!_answer.theresError )
+			_answer=TestProcessor();
+		
 		
 		if(_answer.theresError)
 			ManageError(_answer.error);
@@ -198,7 +202,7 @@ public class Test_001
 				System.out.println("first animal: " + _firstAnimal.get().getName());
 			
 			if (_animals.stream().anyMatch(s->s.getName()=="wolf"))
-				System.out.println("hay wolfs");
+				System.out.println("there are wolfs");
 			
 		}
 		catch(Exception _ex)
@@ -210,7 +214,86 @@ public class Test_001
 		return _answer;
 	}
 	
+	private static Return<Object> TestProcessor()
+	{
+		Return<Object>_answer=new Return<Object>();
+		try
+		{
+			List<Animal> _animals=new ArrayList<Animal>();
+			_animals.add(new  Animal("lion"));
+			_animals.add(new Animal("sheep"));
+			_animals.add(new  Animal("wolf"));
+			_animals.add(new  Animal("wolf"));
+			_animals.add(new  Animal("wolf"));
+			
+			int _numberThreads=1, _pauseInMilliseconds=100;
+
+			/*
+			Processor<Animal>_processor=new Processor<Animal>(_numberThreads, _pauseInMilliseconds);
+			_processor.AddListener_BeginProcessEntity((o)->TestIProcessObjectEvent(o));
+			_processor.AddListener_EndProcessEntity((o)->TestIProcessObjectEvent(o));
+			_processor.AddListener_ErrorProcessEntity((o,p)->TestIErrorProcessEntity(o,p));
+			_processor.AddListener_MessageProcessEntity((o)->TestIProcessString(o));
+			_processor.AddListener_Progress((o)->TestIProcessInteger(o));
+			_processor.Process(_animals, e -> DoSomething(e));
+			*/
+			
+			
+			  try (Processor<Animal>_processor =new Processor<Animal>(_numberThreads, _pauseInMilliseconds))
+			  {
+				  _processor.AddListener_BeginProcessEntity((o)->TestIProcessObjectEvent(o));
+				  _processor.AddListener_EndProcessEntity((o)->TestIProcessObjectEvent(o));
+				  _processor.AddListener_ErrorProcessEntity((o,p)->TestIErrorProcessEntity(o,p));
+				  _processor.AddListener_MessageProcessEntity((o)->TestIProcessString(o));
+				  _processor.AddListener_Progress((o)->TestIProcessInteger(o));
+				  _processor.Process(_animals, e -> DoSomething(e));
+			  }
+	
+			for (Animal _a : _animals)
+				System.out.println(_a.name );
+			
+			
+			
+		}
+		catch(Exception _ex)
+		{
+			_answer.theresError=true;
+			_answer.error=Utility.GetError(_ex);
+		}
+		
+		return _answer;
+	}
+
+	public static Return<Object> DoSomething(Animal animal)
+	{
+		animal.name=String.format("%1$s_name", animal.name);
+		Return<Object> _answer=new Return<Object>();
+		return _answer;
+	}
+	
+	private static void TestIProcessObjectEvent(Object parameter)
+	{
+		
+	}
+	
+	private static void TestIErrorProcessEntity(Animal entity, Error error)
+	{
+		
+	}
+	
+	private static void TestIProcessString(String parameter)
+	{
+		
+	}
+	
+	private static void TestIProcessInteger(Integer parameter)
+	{
+		
+	}
+	
+	
 }
+
 
 
 class Animal

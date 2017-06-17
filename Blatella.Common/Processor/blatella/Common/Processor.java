@@ -1,5 +1,6 @@
 package blatella.Common;
 
+import java.lang.Thread.State;
 import java.util.*;
 
 public class Processor<T> implements AutoCloseable 
@@ -50,8 +51,19 @@ public class Processor<T> implements AutoCloseable
                     do
                     {
                     	/*
-                        List<Thread> _listFinishedThreads = _listProcessors.Where(p => p.ThreadState == ThreadState.Stopped).ToList();
-                        foreach (Thread _hilo in _listFinishedThreads)
+                    	Thread aa=new Thread();
+                    	if(aa.getState()== State.RUNNABLE)
+                    	{
+                    		
+                    	aa.run();	
+                    	}
+                    	*/
+                    	  
+                    	List<Thread> _listFinishedThreads = _listProcessors.Where(p => p.getState() == State.RUNNABLE).ToList();
+                    	
+                    	
+                        /*
+                    	foreach (Thread _hilo in _listFinishedThreads)
                             _listProcessors.Remove(_hilo);
                         ProcessWrapper<T> _envoltorioEntidad = _listProcessWrapper.Where(e => !e.processing && !e.processed).FirstOrDefault();
                         if (_envoltorioEntidad != null)
